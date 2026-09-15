@@ -1,0 +1,303 @@
+/* ==========================================================================
+   CCHS Esports — Version 3 Playground (v3.css)
+   SwiftUI & Apple VisionOS Next-Gen Web Interface
+   ========================================================================== */
+
+/* 1. Dynamic Ambient Mesh Gradient Aura */
+.ambient-mesh-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 640px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.45) 0%, rgba(56, 189, 248, 0.15) 70%, transparent 100%);
+  top: -120px;
+  left: 10%;
+  animation: floatOrb1 18s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(168, 85, 247, 0.12) 70%, transparent 100%);
+  top: -80px;
+  right: 8%;
+  animation: floatOrb2 22s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(0, 113, 227, 0.1) 70%, transparent 100%);
+  top: 140px;
+  left: 45%;
+  transform: translateX(-50%);
+  animation: floatOrb3 15s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-50px, 40px) scale(1.05); }
+  100% { transform: translate(30px, -20px) scale(0.92); }
+}
+
+@keyframes floatOrb3 {
+  0%   { transform: translate(-50%, 0) scale(1); }
+  50%  { transform: translate(-45%, 25px) scale(1.1); }
+  100% { transform: translate(-55%, -20px) scale(0.96); }
+}
+
+/* Ensure hero content sits crisply over ambient mesh */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. Version 3 Tag in Header */
+.v3-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #0071e3, #6366f1);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  margin-left: 6px;
+  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.25);
+}
+
+/* 3. Live Lab Status Beacon */
+.live-beacon {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.beacon-active {
+  background-color: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulseBeacon 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.beacon-standby {
+  background-color: var(--cchs-blue);
+  box-shadow: 0 0 8px rgba(0, 113, 227, 0.4);
+}
+
+@keyframes pulseBeacon {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.pill-live-glow {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #065f46 !important;
+}
+
+/* 4. Cupertino Segmented Control (SwiftUI Picker) */
+.segmented-control-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 36px;
+  padding: 0 16px;
+}
+
+.cupertino-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  user-select: none;
+  max-width: 100%;
+}
+
+.picker-glider {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: calc(100% - 6px);
+  background-color: #ffffff;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0.5px 2px rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              width 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.picker-tab {
+  position: relative;
+  z-index: 2;
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  outline: none;
+}
+
+.picker-tab:hover {
+  color: var(--text-main);
+}
+
+.picker-tab.is-active {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.picker-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--text-secondary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.picker-tab.is-active .picker-count {
+  background-color: var(--cchs-blue-tint);
+  color: var(--cchs-blue);
+}
+
+/* 5. VisionOS Specular Spotlight Hover & Spring Transitions */
+.apple-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.28s ease,
+              filter 0.28s ease;
+}
+
+/* VisionOS Specular Sheen layer */
+.apple-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 113, 227, 0.07),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.apple-card:hover::before {
+  opacity: 1;
+}
+
+.apple-card:active {
+  transform: scale(0.985);
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Filtering Animation */
+.apple-card.is-hidden {
+  display: none !important;
+}
+
+/* Mobile Adjustments for Version 3 */
+@media (max-width: 680px) {
+  .cupertino-picker {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .cupertino-picker::-webkit-scrollbar {
+    display: none;
+  }
+
+  .picker-tab {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .picker-count {
+    font-size: 0.68rem;
+    padding: 1px 5px;
+  }
+
+  .orb-1, .orb-2 {
+    filter: blur(60px);
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-1, .orb-2, .orb-3,
+  .live-beacon,
+  .picker-glider,
+  .apple-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
